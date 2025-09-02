@@ -17,10 +17,9 @@ A reference-based analysis in Stacks proceeds in three major stages. The <span s
 
 The image below diagrams the options.
 
-<div style="border: 1px solid #ccc; padding: 10px; max-width: 800px; margin: 20px auto;">
-  <img src="stacks_pipeline.png" alt="Stacks pipeline" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; height: auto;">
-  <p><em>The <strong>Stacks</strong> pipeline.</em></p>
-</div>
+![Stacks pipeline](images/stacks_pipeline.png)
+
+*The **Stacks** pipeline.*
 
 
 
