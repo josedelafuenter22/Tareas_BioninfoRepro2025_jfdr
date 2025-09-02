@@ -3,7 +3,7 @@
 
 ## Los ejercicios a realizar sobre la sesión 2 son:
 
-1. Escribe un texto en formato Markdown de manera que quede igual que los tres primeros puntos de Preparing the environment, cleaning the data for Stacks. **R:** El resultado de ese ejercicio se encuentra en ejerciciomarkdownstacksmanual.md
+1. Escribe un texto en formato Markdown de manera que quede igual que los tres primeros puntos de Preparing the environment, cleaning the data for Stacks. **R:** El resultado de ese ejercicio se encuentra en ejerciciomarkdownstacksmanual.md. Además en images, se encuentran los archivos ejerciciomarkdown1,2 y 3 donde se muestra el codigo junto al texto formateado.
 
 1. Siguiendo los pasos del tutorial anterior, genera un repositorio entro de tu cuenta de Github que se llame "Tareas_BioinfRepro2019_TusIniciales". **R:** Mi repositorio se llama Tareas_BioninfoRepro2025_jfdr
 
