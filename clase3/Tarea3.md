@@ -1,5 +1,3 @@
-`{r setup, include=FALSE} knitr::opts_chunk$set(   message = FALSE,   warning = FALSE,   echo = TRUE ) if (!requireNamespace('here', quietly = TRUE)) install.packages('here') library(here)`
-
 # Ejercicios sesión 3
 
 ## Crea una variable con el logaritmo base 10 de 50 y súmalo a otra variable cuyo valor sea igual a 5.
