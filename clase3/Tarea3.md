@@ -1,0 +1,333 @@
+`{r setup, include=FALSE} knitr::opts_chunk$set(   message = FALSE,   warning = FALSE,   echo = TRUE ) if (!requireNamespace('here', quietly = TRUE)) install.packages('here') library(here)`
+
+# Ejercicios sesión 3
+
+## Crea una variable con el logaritmo base 10 de 50 y súmalo a otra variable cuyo valor sea igual a 5.
+
+``` {r}
+x <- log10(50) #asigna a la variable x con el logaritmo de 50 en base 10
+y <- 5 #asigna a la variable y el valor 5
+res1<- x + y #asigna a res1 el resultado de la suma de x e y
+print(sprintf("El resultado de la suma es: %f", res1)) #muestra el texto y el resultado de res1
+```
+
+## Suma el número 2 a todos los números entre 1 y 150.
+
+``` {r}
+num<-1:150 #genera vector num con los valores de 1 a 150
+res2<-num+2 #suma 2 a cada valor del vector num 
+for (i in 1:150) #genera un for loop para imprimir el texto y el resultado de cada una de las sumas
+print(sprintf("El resultado de sumar 2 al número %d es: %d", num[i], res2[i]))
+```
+
+## ¿Cuántos números son mayores a 20 en el vector -13432:234?
+
+``` {r}
+ran<- -13432:234 #asigna al vector ran el rango de valores
+may20<- sum(ran>20) #asigna a la variable may20 la cantidad de numeros mayores a 20 en ran
+print(sprintf("La cantidad de números mayores a 20 es: %d", may20)) #imprime el resultado de con el texto y el numero de may20
+```
+
+## Carga en R el archivo PracUni1Ses3/maices/meta/maizteocintle_SNP50k_meta_extended.txt y ponlo en un objeto de R llamado meta_maiz.
+
+``` {r}
+library(readr)
+meta_maiz <-  read_delim("https://raw.githubusercontent.com/u-genoma/BioinfinvRepro/master/Unidad1/Sesion3/PracUni1Ses3/maices/meta/maizteocintle_SNP50k_meta_extended.txt",
+                    delim = "\t")
+
+head(meta_maiz) #se asigna a la variable meta_maiz el enlace de github que contiene los datos. Luego se imprime la cabecera de dichos datos.
+```
+
+## Escribe un for loop para que divida 35 entre 1:10 e imprima el resultado en la consola.
+
+``` {r}
+for (i in 1:10) {
+  resultado <- 35 / i
+  print(sprintf("35 dividido por %d es: %.2f", i, resultado))
+} #se genera for loop para dividir 35 entre todos los numeros entre 1 y 10 y se imprime el texto y el resultado.
+```
+
+## Modifica el loop anterior para que haga las divisiones solo para los números nones (con un comando, NO con c(1,3,...)). Pista: next.
+
+``` {r}
+for (i in 1:10) {
+  if (i %% 2 == 0) next  # Si i es par, salta a la siguiente iteración
+  resultado <- 35 / i
+  print(sprintf("35 dividido por %d es: %.2f", i, resultado)) #se asgina a la variable resultado el resultado de la division de 35 con los numeros impares y luego se imprime el reultado
+}
+```
+
+## Modifica el loop anterior para que los resultados de correr todo el loop se guarden en una df de dos columnas, la primera debe tener el texto "resultado para x" (donde x es cada uno de los elementos del loop) y la segunda el resultado correspondiente a cada elemento del loop. Pista: el primer paso es crear un vector fuera del loop.
+
+``` {r}
+texto <- c() #se genera columna vacia para el texto
+resultados <- c() #se genera columna vacia para los resultados
+
+for (i in 1:10) {
+  if (i %% 2 == 0) next #si i es par, se salta a la siguiente iteración
+  resultado <- 35 / i #se guarda el resultado de la division entre 35 y los numeros impares
+  texto <- c(texto, sprintf("Resultado para %d", i)) #se genera el texto de la respuesta
+  resultados <- c(resultados, resultado) #se guarda en las columnas los valores anteriores
+}
+
+df <- data.frame(
+  "División entre 35 y cada número impar" = texto,
+  Resultado = resultados,
+  stringsAsFactors = FALSE,
+   check.names = FALSE
+)
+#se genera el df para generar la tabla que muestre el texto y el resultado de la división
+print(df, row.names = FALSE) #se imprime la tabla
+```
+
+## Abre en RStudio el script PracUni1Ses3/mantel/bin/1.IBR_testing.r. Este script realiza un análisis de aislamiento por resistencia con Fst calculadas con ddRAD en Berberis alpina.
+
+``` {r}
+## Alicia Mastretta Yanes
+## Perform Mantel tests with different resistance surfaces to test for IBR in B. alpina
+
+# start with a fresh brain
+rm(list = ls())
+
+# Load libraries
+library(ade4)
+library(ggplot2)
+library(sp)
+
+########### Get data  ###############
+## Source home made funcs to load data
+source("read.fst_summary_fix.R")
+source("read.effdist.R")
+
+### Geographic ###
+
+# For reference, get Population ID codes as used for Circuitscape and Map plotting
+# this is not the same order than PopuplationMaps used for Stacks. Careful. 
+points.info<-read.delim("../spatial/surveyed_mountains.tsv")
+points.info
+points.infoxy<-as.matrix(points.info[,c(5,6)], longlat=TRUE)
+
+# Get geographic distances
+GeoDist<-spDists(points.infoxy, ) 
+colnames(GeoDist)<-points.info$Key
+rownames(GeoDist)<-points.info$Key
+
+### define paths for loading data
+genfolder<-"../genetic"
+circfolder<-"../spatial/resdist"
+
+### Genetic ###
+
+## define pop names as in Stack population maps 
+# check pop map order
+readLines(paste0(genfolder, "/BerSS.sumstats.tsv"), n=6)
+# define popNames
+popNames=c("Aj","Iz","Ma","Pe","Tl","To") 
+
+## Get Fst pairwise matrix
+  B.Fst <-read.fst_summary_fix(file=paste0(genfolder, "/BerSS.fst_summary.tsv"),
+                         popNames=popNames)   
+
+
+### Effective distances ###
+
+### Get general info and paths
+  ## define pop names as in Circuitscape focal points order 
+  # get focal points
+  focpoints<-read.delim(paste0(circfolder, "/Balpina_focalpoints.txt"), header=FALSE)
+  # get info of focal points
+  x<-points.info$ID %in% focpoints[,1] 
+  focpoints<- points.info[x,] 
+  # get PopNames in order of focal points
+  popNamesFP<-as.vector(focpoints$Key)
+  popNamesFP
+  # get PopNames in order of Stacks output PopMap
+  popNames=popNames
+  popNames
+ 
+
+### Get effective distance matrix and mean of it for each raster 
+
+  for(i in c("present", "ccsm", "miroc", "flat", "1800", "2000", "2300", "2500", "2700", "3000", "3300", "3500", "4000")) {
+    
+    ## define resistances.out files
+    resfile <- paste0(circfolder, "/Balpina_", i, "_resistances.out")
+      
+    ### Get effective distances
+    
+    eff.dist<-read.effdist(file=resfile, popNames=popNamesFP, des.order=popNames)
+    
+    ### Estimate mean effective distance by population
+    mean.effD <- apply(eff.dist, 2, mean)  
+      
+    ### Name output data
+    assign(paste0("B.", i), eff.dist)  # effective distance mat
+    assign(paste0("B.mean.", i), mean.effD) # mean effective distances
+  
+  }    
+    
+### Get Geographic distances for this spp localities
+B.GeoDist<-GeoDist[match(popNames,rownames(GeoDist)), match(popNames,colnames(GeoDist))] #get right order
+B.GeoDist
+
+
+###########  Isolation by Resistance ###############
+
+##### Perform Mantel test between the Fst matrix and the present and LGM effective distances
+# function for lm and plotting
+source("DistPlot.R")
+
+
+### Berberis
+  # Linearize as suggested by Rousset (1997) for IBD using FST/(1 ??? FST)
+  B.FstLin<- B.Fst/(1-B.Fst)
+  
+  # run mantel test for each condition
+IBRresults<-c("rster", "MTpvalue", "MTr")
+  for(i in c("present", "ccsm", "miroc", "flat", "1800", "2000", "2300", "2500", "2700", "3000", "3300", "3500", "4000")) {
+  
+    print(paste("Results for", i))
+    
+    # Mantel test 
+    print("Mantel test")
+    x<-mantel.rtest(as.dist(get(paste0("B.",i))), as.dist(B.FstLin), nrepet=10000)
+    print(x)
+    
+    # Plot
+    DistPlot(get(paste0("B.",i)), B.FstLin, plotnames=FALSE,
+            ylabel=expression("F"[ST]*"/(1 ??? "[FST]*")"), xlabel=paste("Effective distance", i))
+               
+    # get info for df  
+    MTpvalue<-round(x$pvalue, 6)
+    MTr<-round(x$obs, 4)
+    
+    # put results in dataframe
+    rster<-paste(i)
+    IBRresults<-rbind(IBRresults, c(rster, MTpvalue, MTr))
+  } 
+
+IBRresults
+
+## session info
+sessionInfo()
+```
+
+Lee el código del script y determina:
+
+-   #### ¿qué hacen los dos for loops del script?
+
+    El primer loop calcula la distancia promedio por poblaciones y
+    guarda los resultados en variables para usar más adelante. El
+    segundo loop realiza el test Mantel, para determinar la correlación
+    entre cada uno de los escenarios estudiados, grafica los resultados
+    y guarda los p-value en un dataframe.
+
+-   #### ¿qué paquetes necesitas para correr el script?
+
+    Se necesitan los paquetes sp, ade4 y ggplot2
+
+-   #### ¿qué archivos necesitas para correr el script?
+
+    Necesito los archivos: surveyed_mountains.tsv,
+    read.fst_summary_fix.R, read.effdist.R, BerSS.sumstats.tsv,
+    BerSS.fst_summary.tsv, Balpina_focalpoints.txt, \_resistances.out,
+    DistPlot.R.
+
+## Escribe una función llamada calc.tetha que te permita calcular tetha dados Ne y u como argumentos. Recuerda que tetha =4Neu.
+
+``` {r}
+calc.tetha <- function(Ne, u) {
+  tetha <- 4 * Ne * u
+  return(tetha)
+} #se asgina la funcion calc.tetha con parametro Ne y u. El valor de teta queda como el producto entre 4 y los valores de Ne y u
+```
+
+## Escribe un script que debe estar guardado en PracUni1Ses3/maices/bin y llamarse ExplorandoMaiz.R, que 1) cargue en R el archivo PPracUni1Ses3maices/meta/maizteocintle_SNP50k_meta_extended.txt y 2) responda lo siguiente.
+
+### ¿Qué tipo de objeto creamos al cargar la base?
+
+Se crea un data frame.
+
+``` {r}
+library(readr)
+meta_maiz <-  read_delim("https://raw.githubusercontent.com/u-genoma/BioinfinvRepro/master/Unidad1/Sesion3/PracUni1Ses3/maices/meta/maizteocintle_SNP50k_meta_extended.txt",
+                    delim = "\t") #se carga la base de datos a la variable meta_maiz
+```
+
+#### ¿Cómo se ven las primeras 6 líneas del archivo?
+
+``` {r}
+head(meta_maiz, 6) #muestra las 6 primeras lineas de la base de datos
+```
+
+#### ¿Cuántas muestras hay?
+
+Hay 165 muestras.
+
+``` {r}
+nrow(meta_maiz) #cuenta el numero de filas en la base de datos
+```
+
+#### ¿De cuántos estados se tienen muestras?
+
+De 19 estados.
+
+``` {r}
+sort(unique(na.omit(meta_maiz$Estado))) #ordena la columna Estado e indica los estados presentes, sin contarlos.
+```
+
+#### ¿Cuántas muestras fueron colectadas antes de 1980? 8 muestras
+
+``` {r}
+sum(meta_maiz$`A̱o._de_colecta` < 1980, na.rm = TRUE) #suma la cantidad de muestras que cumplen el criterio en la variable A̱o._de_colecta.
+```
+
+#### ¿Cuántas muestras hay de cada raza?
+
+``` {r}
+tabla_razas <- sort(table(na.omit(meta_maiz$Raza)), decreasing = TRUE)
+tabla_razas #se genera una tabla que indica la cantidad de las muestras por cada raza en la base de datos
+```
+
+#### En promedio ¿a qué altitud fueron colectadas las muestras? 
+En
+promedio, las muestras fueron colectadas a 1.519,242 metros sobre el
+nivel del mar.
+
+``` {r}
+mean(meta_maiz$Altitud, na.rm = TRUE) #calcula el promedio en la columna Altitud.
+```
+
+#### ¿Y a qué altitud máxima y mínima fueron colectadas?
+ La altitud
+máxima es de 2.769 y la mínima es de 5 metros sobre el nivel del mar.
+
+``` {r}
+range(meta_maiz$Altitud, na.rm = TRUE) #se determina el rango en la variable Altitud
+```
+
+#### Crea una nueva df de datos sólo con las muestras de la raza Olotillo
+
+``` {r}
+df_olotillo <- subset(meta_maiz, Raza == "Olotillo") #se genera una tabla nueva donde el criterio es que se escogen los valores de Olotillo en Raza
+```
+
+#### Crea una nueva df de datos sólo con las muestras de la raza
+Reventador, Jala y Ancho
+
+``` {r}
+df_sub <- subset(meta_maiz, Raza %in% c("Reventador", "Jala", "Ancho")) #se genera una tabla nueva donde el criterio es que en la variable Raza se escogan Reventador, Jala y Ancho
+```
+
+#### Escribe la matriz anterior a un archivo llamado "submat.cvs" en
+/meta.
+
+``` {r}
+write.csv(df_sub, file = "submat.cvs", row.names = FALSE, na = "") #genera un documento separado por comas, con el nombre submat.
+```
+
+#### Exploren los paquetes de CRAN y de Bioconductor. Compartan por el gitter el link a la página de descripción del paquete y mencionen brevemente por qué les parece útil.
+
+De CRAN me parece interesante el paquete de ggplot2, ya que con este paquete es posible hacer gráficos claros y explicativos, pudiendo usar colores que apoyen a identificar cada uno de los tratamientos en un experimento y presentarlos de una forma que facilite su comprensión por los lectores. Su enlace es [https://cran.r-project.org/web/packages/ggplot2/index.html]()
+
+Por parte de Bioconductor, un paquete util es edgeR, ya que facilita el analisis diferencial de datos, por ejemplo RNA-seq, facilitando las comparaciones entre tratamientos y réplicas del experimento. El enlace para este paquete es [https://bioconductor.org/packages/release/bioc/html/edgeR.html]()
