@@ -8,4 +8,4 @@ Each directory correspond to the assigments for each session. The name of direct
 
 [Tareas sesion 2](https://github.com/josedelafuenter22/Tareas_BioninfoRepro2025_jfdr/blob/main/clase2/Markdown%20tareas%20clase%202.md)
 
-[Tareas sesion 3](hhttps://github.com/josedelafuenter22/Tareas_BioninfoRepro2025_jfdr/blob/main/clase3/Tarea3.md)
+[Tareas sesion 3](https://github.com/josedelafuenter22/Tareas_BioninfoRepro2025_jfdr/blob/main/clase3/Tarea3.md)
