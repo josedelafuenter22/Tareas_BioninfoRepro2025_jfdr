@@ -128,33 +128,33 @@ scp bioinfo1@genoma.med.uchile.cl:jdelafuente/S6_R2_filter_fastqc* .
 
 El analisis se hará con respecto a las recturas R1 y R2 sin filtrar.
 
-![Estadisticas básicas R1](estbR1.png)
-![Estadisticas basicas R2](estbR2.png)
+![Estadisticas básicas R1](images/estbR1.png)
+![Estadisticas basicas R2](images/estbR2.png)
 
 Como se puede observar, ambas secuencias poseen el mismo numero de lecturas, largo y proporcion de GC. 
 
 ### Para R1: 
-![Valores Q desde reporte por FastQC](S6_R1.png)
+![Valores Q desde reporte por FastQC](images/S6_R1.png)
 ### Para R2:
-![Valores Q desde reporte por FastQC](S6_R2.png)
+![Valores Q desde reporte por FastQC](images/S6_R2.png)
 
 De las imagenes anteriores se puede obvservar que en R1 La calidad es muy alta y estable en todo el rango de 1 a 250 bases, con valores de Q > 30.
 Esto indica que más del 99.9 % de las bases tienen probabilidad de error menor a 0.001.
 Para el caso de R2 Se observa una disminución progresiva de la calidad hacia el extremo 3’, con una caída de Q ≈ 36 a Q ≈ 28–30 en las últimas 30 bases. De lo anterior se puede inferir que es necesario un proceso de triming en dicha zona, para mejorar la calidad.
 En cuanto a la distribución de calidad de la lectura se tiene
 ### Para R1:
-![Quality score](psqsR1.png)
+![Quality score](images/psqsR1.png)
 
-![Quality score](psqsR2.png)
+![Quality score](images/psqsR2.png)
 
 La calidad global de ambas lecturas es alta y consistente. Sin embargo, la variabilidad ligeramente mayor en R2 confirma lo observado en la calidad por base
 
 Al analizar el contenido GC en cada secuencia, se tiene que:
 
 ### Para R1:
-![GC content](psgcR1.png)
+![GC content](images/psgcR1.png)
 ### Para R2:
-![GC content](psgcR2.png)
+![GC content](images/psgcR2.png)
 
 R1 y R2 muestran una distribución unimodal y simétrica, centrada alrededor del 43–44 % GC.
 
@@ -163,10 +163,10 @@ No se observan picos secundarios ni desplazamientos significativos, lo que desca
 Finalmente, al analizar el contenido por base en la secuencia, se tiene:
 
 ### Para R1
-![Sequence content](pbsqR1.png)
+![Sequence content](images/pbsqR1.png)
 
 ### Para R2
-![Sequence content](pbsqR2.png)
+![Sequence content](images/pbsqR2.png)
 
 
 De estas imagenes, se puede notar que R1 muestra una composición estable y típico de una secuenciación de buena calidad. En cambio, para R2 se observa una disparidad en el contenido de las bases, lo cual apoya la decisión de realizar triming en esos pares de bases finales.
@@ -175,7 +175,7 @@ De estas imagenes, se puede notar que R1 muestra una composición estable y típ
 
 ## 5️ Compare los valores calculados en el punto 1 con lo entregado en el informe de calidad obtenido con FastQC
 Como se puede observar en la imagen, las 10 primeras bases se encuentran entre los valores de 34 y 37, lo que se condice con lo obtenido desde el archivo fastq original.
-![Valores Q desde reporte por FastQC](S6_R1.png)
+![Valores Q desde reporte por FastQC](images/S6_R1.png)
 
 
 ---
@@ -185,26 +185,26 @@ Como se puede observar en la imagen, las 10 primeras bases se encuentran entre l
 Las cuatro figuras que escogeré son: Per base sequence quality, Per sequence quality scores, Per sequence GC content y Per base sequence content.
 
 ### Para R1 raw:
-![Valores Q desde reporte por FastQC](S6_R1.png)
-![Quality score](psqsR1.png)
-![GC content](psgcR1.png)
-![Sequence content](pbsqR1.png)
+![Valores Q desde reporte por FastQC](images/S6_R1.png)
+![Quality score](images/psqsR1.png)
+![GC content](images/psgcR1.png)
+![Sequence content](images/pbsqR1.png)
 ### Para R2 raw:
-![Valores Q desde reporte por FastQC](S6_R2.png)
-![Quality score](psqsR2.png)
-![GC content](psgcR2.png)
-![Sequence content](pbsqR2.png)
+![Valores Q desde reporte por FastQC]images/(S6_R2.png)
+![Quality score](images/psqsR2.png)
+![GC content](images/psgcR2.png)
+![Sequence content](images/pbsqR2.png)
 ### Para R1 filtred:
-![Valores Q desde reporte por FastQC](pbsqR1f.png)
-![Quality score](psqsR1f.png)
-![GC content](psgcR1f.png)
-![Sequence content](pbscR1f.png)
+![Valores Q desde reporte por FastQC](images/pbsqR1f.png)
+![Quality score](images/psqsR1f.png)
+![GC content](images/psgcR1f.png)
+![Sequence content](images/pbscR1f.png)
 ### Para R2 filtred:
 
-![Valores Q desde reporte por FastQC](pbsqR2f.png)
-![Quality score](psqsR2f.png)
-![GC content](psgcR2f.png)
-![Sequence content](pbscR2f.png)
+![Valores Q desde reporte por FastQC](images/pbsqR2f.png)
+![Quality score](images/psqsR2f.png)
+![GC content](images/psgcR2f.png)
+![Sequence content](images/pbscR2f.png)
 
 Para el caso de Per base sequence quality, se puede notar que R1 no mostró problemas mayores, pero el filtrado suavizó pequeñas variaciones. R2 mejoró notablemente tras el trimming, eliminando la degradación del extremo 3’. El trimming fue efectivo y selectivo, conservando las regiones informativas.
 
