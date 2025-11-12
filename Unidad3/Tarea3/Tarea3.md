@@ -252,5 +252,20 @@ Las variantes poseen una profundidad por sobre 120, por lo se puede suponer que 
 
 ## Conclusiones
 
-Al analizar las anotaciones de las varianes con VEP, se obtienen 46 observaciones de las cuales ninguna posee un valor distinto a bening, ni tampoco con un valor CAAD > 20. Lo anterior indica que no hay evidencia de que estas anotaciones patogénicas. 
+Con el siguiente código en R, se analizó el archivo entregado por la plataforma VEP
+
+```r
+> # cargamos el archivo txt obtenido desde la plataforma VEP
+> vep <- read.delim("VEP.txt", header = TRUE, sep = "\t", quote = "", comment.char = "", check.names = FALSE)
+> # Mantener variantes con CADD_PHRED > 20 o CLIN_SIG distinto de "benign"
+> vep_filtrado <- subset(
++   vep,
++   (is.na(CADD_PHRED) == FALSE & CADD_PHRED > 20) |
++     (is.na(CLIN_SIG) == FALSE & tolower(trimws(CLIN_SIG)) != "benign")
++ )
+> # chequeo de cuantas variantes pasan el filtro.
+> nrow(vep_filtrado)
+[1] 0
+```
+Al analizar las anotaciones de las varianes con VEP, se obtienen 46 observaciones de las cuales ninguna posee un valor distinto a bening, ni tampoco con un valor CAAD > 20. Lo anterior indica que no hay evidencia de que estas anotaciones sean patogénicas. 
 Las variantes en JAK3 (rs2302600, rs2302601, rs2302603, rs2072496, rs1122385 y rs3212730) se encuentran en zonas exónicas y presentan en general cambios de sentido (missense), con excepción de una sinónima (rs1122385) y una en el límite exón–intrón (rs3212730), pudiendo tener un posbile impacto en el splicing del transcrito. Por otro lado, la variante del gen CALR (rs1049481) se ubica en una región exónica con cambio de base G→T, lo que podría suponer un posible efecto missense. Lo anterior, podría sugerir que las variaciones detectadas pueden ser polimorfismos normales en la población en el cromosoma 19, ya que no se detectaron fenotipos patológicos. 
