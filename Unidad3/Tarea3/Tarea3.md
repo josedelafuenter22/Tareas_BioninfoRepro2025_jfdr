@@ -98,7 +98,7 @@ En cuanto a la cobertura, el promedio de 67,36x nos indica que hay una buena pos
 
 Reporte generado por Qualimap.
 
-[Ver reporte completo de Qualimap](qualimapReport.html)
+[Ver reporte completo de Qualimap](https://josedelafuenter22.github.io/Tareas_BioninfoRepro2025_jfdr/Unidad3/Tarea3/qualimapReport.html)
 
 ---
 
