@@ -42,34 +42,40 @@ Desde el informe generado por Qualimap, se escogieron las figuras Coverage Histo
 
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="genome_coverage_histogram.png" alt="Histograma de cobertura genómica" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/genome_coverage_histogram.png" alt="Histograma de cobertura genómica" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 1.</b> Distribución de la profundidad de cobertura (Coverage, X) en las regiones analizadas. El eje X representa el número de lecturas que cubren cada posición genómica, y el eje Y el número de ubicaciones genómicas con dicha cobertura.
   </figcaption>
-</figure>
+</figure>  
+
+
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="genome_gc_content_per_window.png" alt="Contenido G/C" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/genome_gc_content_per_window.png" alt="Contenido G/C" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 2.</b> Distribución del contenido GC (%) de las lecturas mapeadas. El eje X indica el porcentaje de GC en las lecturas, y el eje Y la fracción relativa de lecturas con dicho contenido.
   </figcaption>
 </figure>
 
 
+
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="genome_mapping_quality_histogram.png" alt="Histograma de calidad mapeo style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/genome_mapping_quality_histogram.png" alt="Histograma de calidad mapeo style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 3.</b> Distribución de la calidad de mapeo (MAPQ) de las lecturas. El eje X representa los valores de calidad de alineamiento y el eje Y el número de posiciones genómicas con dichos valores.
   </figcaption>
-</figure>
+</figure>  
+
 
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="genome_uniq_read_starts_histogram.png" alt="Histograma de tasa de duplicación" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/genome_uniq_read_starts_histogram.png" alt="Histograma de tasa de duplicación" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 4.</b> Distribución de la tasa de duplicación de lecturas. El eje X representa el número de duplicaciones y el eje Y el número de lecturas afectadas.
   </figcaption>
-</figure>
+</figure>  
+
+
 
 La Figura 1 muestra una distribución asimétrica, con un máximo principal entre 60× y 100× en las coverturas, el cual coincide con el promedio reportado en el informe, que es de 67,36. Además se observa otro máximo en 0x, lo cual permite interpretar que si bien la mayoría de las regiones e encuentran cubiertas y con buena profundidad, existe un conjunto de posiciones sin lecturas mapeadas, lo cual puede ser indicador de regiones con alta cantidad G/C o repetitivas. 
 
@@ -222,7 +228,7 @@ chr19	17952609	rs3212730	T	G
 Con ello se pudieron identificar las zonas del cromosoma 19 para hacer la visualización de dichas zonas e identificar el tipo de modificación en las variantes. 
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="IGV.png" alt="Imagen IGV="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/IGV.png" alt="Imagen IGV="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 5.Variante en zona exóxina del gen CALR</b> .
   </figcaption>
