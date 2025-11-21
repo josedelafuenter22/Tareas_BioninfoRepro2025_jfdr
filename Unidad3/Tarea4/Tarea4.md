@@ -12,7 +12,7 @@ Para la identificación de varientes, el primer paso es el mapeo de las lecturas
 Siguiendo las instrucciones del [tutorial](https://github.com/u-genoma/BioinfinvRepro/blob/master/Unidad3/Sesion4/Tutorial1_cancer-identify-variants-tumor.pdf) se realizó la identificación de variantes, cuyo resultado se guardó en la carpeta Analyzed data, como se muestra en la figura 1. 
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="AD.png" alt="Analyzed data file" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/AD.png" alt="Analyzed data file" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 1.</b> Carpeta Analyzed data obtenida como resultado de las instrucciones del tutorial.</b> 
   </figcaption>
@@ -27,7 +27,7 @@ Para comprobarar si el enriquecimiento de las zonas objetivo fue correcto, se de
 
 Para responder esta pregunta, se puede analizar la figura 2. En ella se puede observar que la región objetivo tiene una cobertura de un 82,6% de las bases con el parametro de minima cobertura de 10X que se fijó según el tutorial.
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="Sum.png" alt="Summary" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/Sum.png" alt="Summary" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 2.</b> Summary de las regiones blanco del cromosoma 5.</b> 
   </figcaption>
@@ -38,7 +38,7 @@ Para responder esta pregunta, se puede analizar la figura 2. En ella se puede ob
 La especificidad de las lecturas fue de un 36,48%, como se muestra en la figura 3. Si bien en el tutorial se nos indica que se está considerando una pequeña fracción del total de las regiones objetivo, lo que hace que el valor esté subestimado, un resultado como este nos podría sugerir que quizás la captura del cromosoma 5 fue poco eficiente, que hay mucho ruido fuera del objetivo, que el enriquecimiento fue limitado y/o incluso una mala calidad en el diseño de la sonda. 
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="TRO.png" alt="Summary" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/TRO.png" alt="Summary" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 3.</b> Summary de las regiones blanco del cromosoma 5.</b> 
   </figcaption>
@@ -50,7 +50,7 @@ La especificidad de las lecturas fue de un 36,48%, como se muestra en la figura 
 De las 124 regiones objetivo totales, 88 regiones (71%) tienen al menos un 80% de sus bases con una cobertura mayor o igual a 10X, como se puede ver en la figura 4, lo se considerará como aceptable para continuar con el estudio de variantes.
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="F10.png" alt="Fraccion" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/F10.png" alt="Fraccion" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 4.</b> Análisis por región con cobertura de al menos 10X.</b> 
   </figcaption>
@@ -61,7 +61,7 @@ De las 124 regiones objetivo totales, 88 regiones (71%) tienen al menos un 80% d
 Para responder esta pregunta, se seleccionará el *Genome Browser Identify Variants*, que se muestra en la figura 1, la cual mostrará un panel como el de la figura 5. 
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="GBV.png" alt="Genome Browser" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/GBV.png" alt="Genome Browser" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 5. </b> Genome Browser Identify Variants.
   </figcaption>
@@ -71,7 +71,7 @@ Para responder esta pregunta, se seleccionará el *Genome Browser Identify Varia
 En el se amplía la zona en la cual coincidan los tracks de referencia, junto al *Target_region_coverage-tumor_reads_chr5*. En esa zona se pueden notar varios genes, como CCDC125, SLC30A5, RAD17, CCNB1 y CDK7. Este último ha sido detectado en varios tipos de cáncer y ha sido asociado con resultados clínicos como blanco terapéutico ([Sava G.P. et al.,2020](https://pmc.ncbi.nlm.nih.gov/articles/PMC7497306/?utm_source=chatgpt.com)). Por lo que el análisis de variantes en esa zona puede ser valiosa. Para ello, se filtra con el nombre de CDK7, que la mayoría de las regiones poseen una cobertura por sobre el filtro aplicado (10X), con 7 regiones exónicas con valores sobre el 90% de cobertura. Como se ve en la fiugra 6, es posible también notar que hay 2 regiones con cobertura nula. Con todo lo anterior, se puede afirmar que el gen CDK7 está bien cubierto. 
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="CDK7.png" alt="Tabla CDK7" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/CDK7.png" alt="Tabla CDK7" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 6.</b> Tabla filtrada para gen CDK7.</b> 
   </figcaption>
@@ -95,7 +95,7 @@ Si es así, la variante podría ser un error de secuenciación.
 Como se puede ver en la figura 7, la variante de CDK7, marcada en gris en la figura,cumple con todos los criterios para no ser considerada un falso positivo.
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="FPCDK7.png" alt="Falso positivo" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/FPCDK7.png" alt="Falso positivo" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 7.</b> Chequeo de falso positivo para CDK7.</b> 
   </figcaption>
@@ -107,7 +107,7 @@ Para el análisis e interpretación, se usará [VEP](https://grch37.ensembl.org/
 De la figura 7, se ve marcada la variante a analizar. Los resultados de los llamados en ambas plataformas se muestra a continuación:
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="vep.png" alt="vep" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/vep.png" alt="vep" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 8.</b> Resultado de plataforma VEP.</b> 
   </figcaption>
@@ -116,7 +116,7 @@ De la figura 7, se ve marcada la variante a analizar. Los resultados de los llam
 
 
 <figure style="background-color: #ffffff; color: #000000; text-align: left; width: 80%; border: 1px solid #ddd; padding: 10px;">
-  <img src="clinvar.png" alt="clinvar" style="display: block; margin: 0 auto 10px 0; width: 100%;">
+  <img src="img/clinvar.png" alt="clinvar" style="display: block; margin: 0 auto 10px 0; width: 100%;">
   <figcaption style="font-size: 14px; text-align: justify;">
     <b>Figura 9.</b> Resultado de plataforma ClinVar.</b> 
   </figcaption>
