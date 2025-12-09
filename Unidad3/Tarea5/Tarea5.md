@@ -4,6 +4,9 @@
 
 ### Introducción
 
+El estudio comparativo de variantes germinales y somáticas permite entender cómo interactúan la predisposición genética y las mutaciones adquiridas en el desarrollo del cáncer. Mientras las variantes germinales reflejan la constitución heredada del individuo, las variantes somáticas representan alteraciones acumuladas por el tumor que afectan rutas clave de proliferación, reparación del ADN y señalización celular.
+
+En este trabajo se analizaron ambos tipos de variantes mediante pipelines de llamado germinal y somático, seguidos de anotación funcional con VEP, evaluación poblacional con gnomAD y revisión de evidencia clínica en OncoKB. Esta integración facilita identificar genes y mutaciones relevantes, distinguir entre posibles eventos de predisposición y drivers tumorales, y evaluar el potencial impacto biológico y terapéutico de las variantes encontradas.
 
 ### Métodología. 
 
