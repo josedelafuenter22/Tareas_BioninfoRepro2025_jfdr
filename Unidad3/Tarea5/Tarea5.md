@@ -22,18 +22,12 @@ El comando para analisis somático y su directorio de ejecución.
 bioinfo1@genoma:~/jdelafuente/pipeline_sarek/code$ bash sarek_somatic.sh S6_R1.fastq.gz S6_R2.fastq.gz ../results
 ```
 
-Los resultados de los pipelines se guardaron en la carpeta `results`y que a su vez se encuentran separados en las carpetas `gs6`y `ss6`respectivamente. 
+Los resultados de los pipelines se guardaron en la carpeta `results` dentro del servidor y que a su vez se encuentran separados en las carpetas `gs6`y `ss6`respectivamente para cada uno de los análisis.
+Al analizar los reportes de MultiQC para el análisis [germinal](https://josedelafuenter22.github.io/Tareas_BioninfoRepro2025_jfdr/Unidad3/Tarea5/reports/Reporte_multiqc_germ.html) y [somaático](https://josedelafuenter22.github.io/Tareas_BioninfoRepro2025_jfdr/Unidad3/Tarea5/reports/Reporte_multiqc_som.html), se puede observar que en ambos casos la calidad de las lecturas en ambos pipelines de Sarek, con un porcentaje de mapeo superior al 99% en ambos casos, a pesar de que existe alto porcentaje de duplicación de lecturas, lo cual hace tener en consideración al hacer los filtros para el análisis de variantes.
 
-Para el llamado de variantes, se tomaron los archivos VCF generados por `Haplotypecaller`y `mutect2`llamados `S6.haplotypecaller.filtered.vcf`y `S6.mutect2.filtered.vcf.gz`y fueron cargados a la plataforma [VEP](https://www.ensembl.org/info/docs/tools/vep/index.html), para así poder distiguir entre aquellas variantes no sinónimas, que tengan un impacto Moderado/Alto y aquellas que estén relacionadas con cáncer. El ensamblaje se hizo sobre le genoma de referencia `GRCh38.p14`. Con los resultados obtenidos desde VEP, se obtuvieron archivos .txt, los cuales fueron procesados en R para obtener lo anterior.
+Para el llamado de variantes, se tomaron los archivos VCF generados por `Haplotypecaller`y `mutect2`llamados `S6.haplotypecaller.filtered.vcf`y `S6.mutect2.filtered.vcf.gz`y fueron cargados a la plataforma [VEP](https://www.ensembl.org/info/docs/tools/vep/index.html), para así poder distiguir entre aquellas variantes no sinónimas, que tengan un impacto Moderado/Alto y aquellas que estén relacionadas con cáncer. El ensamblaje se hizo sobre le genoma de referencia `GRCh38.p14`. Con los resultados obtenidos desde VEP, se obtuvieron archivos .txt, los cuales fueron procesados en R para obtener lo anterior. También se descargaron los VCF anotados desde VEP, los cuales se muestran en la carpeta `vcf`
 
-Script en R para el análisis germinal:
-
-
-
-Script en R para el análisis somático:
-
-
-Obteniendose las siguientes tablas para las variantes germinales y somáticas respectivamente:
+Se usaron los siguientes scripts para el análisis de variantes en R tanto para [germinal](https://github.com/josedelafuenter22/Tareas_BioninfoRepro2025_jfdr/blob/main/Unidad3/Tarea5/code/vepger.R) y [somático](https://github.com/josedelafuenter22/Tareas_BioninfoRepro2025_jfdr/blob/main/Unidad3/Tarea5/code/vepsom.R). Con ellos fue posible obtener las siguientes tablas informativas sobre las variantes germinales y somáticas respectivamente:
 
 <figure >
   <img src="img/germinal.png" alt="Analyzed data file">
@@ -50,7 +44,7 @@ Obteniendose las siguientes tablas para las variantes germinales y somáticas re
 
 ### Análisis global
 
-Para poder realizar el análisis global, se utilizó el siguiente *script* en R:
+Para poder realizar el análisis global, se utilizó el siguiente [script](https://github.com/josedelafuenter22/Tareas_BioninfoRepro2025_jfdr/blob/main/Unidad3/Tarea5/code/Comparacion.R) en R:
 
 A nivel de anotaciones globales —considerando todos los transcritos y consecuencias generados por VEP— se identificaron 2074 anotaciones germinales y 3755 anotaciones somáticas.
 Al restringir el análisis a variantes únicas definidas por CHROM + POS + Allele, se obtuvieron 123 variantes germinales frente a 241 variantes somáticas, lo que indica que el conjunto somático contiene aproximadamente el doble de variantes que el germinal. 
@@ -77,7 +71,7 @@ Entre los genes compartidos destacan múltiples loci ampliamente asociados al c�
 A nivel de variante exacta (misma posición y alelo), se identificaron 59 variantes compartidas entre ambos análisis. Estas corresponden mayoritariamente a variantes germinales que son detectadas también como “somáticas” debido a la ausencia de muestra normal pareada. De este modo, no representan mutaciones adquiridas independientes, sino variantes constitucionales reflejadas en ambos pipelines.
 
 <figure >
-  <img src="img/omparacion_vep.png" alt="Analyzed data file">
+  <img src="img/comparacion_vep.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 3.</b> Distribución tipos de variantes germinal vs somático.</figcaption>
 </figure>  
@@ -101,7 +95,6 @@ Al analizar las variantes germinales, se identificaron 20 variantes con impacto 
 * missense_variant: 19/20 (95%)
 
 * stop_gained: 1/20 (5%)
-
 
 
 Las variantes germinales se localizaron en:
@@ -266,7 +259,34 @@ KMT2A|p.Trp1632Ter|0.000007435| - Europea no finlandesa: 0.00001017| Muy rara
 Importante mencionar que de las 20 variantes seleccionadas, solamente las mostradas en la tabla anterior estaban registradas en gnomAD. 
 
 
-## Discusión y conclusiones
+## Discusión
 
+ A nivel global, el número de variantes únicas es aproximadamente el doble en el análisis somático que en el germinal (241 vs 123), y el espectro de consecuencias se desplaza desde variantes missense  hacia un gran número de eventos truncantes (frameshift, stop_gained/stop_lost), indels en marco y mutaciones que afectan sitios de splicing. Este enriquecimiento en variantes de alto impacto en el tumor concuerda con el concepto de que las células neoplásicas acumulan mutaciones que alteran de manera drástica genes implicados en control del ciclo celular, reparación de ADN y señalización proliferativa.
 
-      
+El hecho de que los 26 genes con variantes germinales también presenten variantes somáticas, y que además se identifiquen 59 variantes exactas compartidas (misma posición y alelo), se explica bien por la estrategia de llamado tumor-only con Mutect2: en ausencia de una muestra normal pareada o de un panel of normals, las variantes constitucionales y ciertos artefactos técnicos tienden a “colarse” en el llamado somático, por lo que parte del catálogo somático corresponde en realidad a variantes germinales o recurrentes de fondo.
+
+Desde el punto de vista funcional, los genes afectados pertenecen a ejes clave de la oncogénesis hematológica:
+
+* Reparación de ADN por recombinación homóloga: BRCA1 y BRCA2 concentran múltiples mutaciones truncantes somáticas, mientras que BRCA2 presenta además una variante missense germinal con alto CADD. Esto es coherente con un estado de deficiencia en recombinación homóloga (HRD), que se asocia a inestabilidad genómica y sensibilidad a inhibidores de PARP en tumores de mama, ovario, próstata y páncreas.
+
+* Regulación epigenética y cromatina: KMT2A (MLL) muestra un patrón bialélico de daño (múltiples missense germinales y truncantes somáticas). KMT2A es un regulador epigenético central, y sus alteraciones se han descrito como drivers en diversas leucemias y síndromes mielodisplásicos.
+
+* Señalización tirosina-quinasa y vías JAK-STAT / RAS-MAPK: variantes en FLT3, KIT, PDGFRB, JAK2, JAK3, CBL, ABL1 y KRAS afectan de manera directa o indirecta vías de señalización proliferativa. Mutaciones en JAK2, CALR y JAK-STAT se han relacionado con activación constitutiva de la vía y desarrollo de neoplasias mieloproliferativas.
+  
+ En este contexto, la presencia de KRAS mutado exclusivamente en el tumor sugiere un driver somático clásico de activación de la vía RAS/MAPK.
+
+Las anotaciones clínicas de OncoKB refuerzan la relevancia de varias de estas variantes. Múltiples truncamientos en BRCA1/2 aparecen clasificados como “likely oncogenic” y “loss-of-function”, con nivel de evidencia 1 para sensibilidad a inhibidores de PARP en tumores de mama, ovario, próstata y páncreas, entre otros.
+
+ En contraste, para variantes truncantes en KIT, PDGFRB, ABL1 o JAK2, la base de datos reporta con frecuencia “unknown oncogenic effect”, lo que refleja vacíos de evidencia funcional o clínica a pesar del alto impacto estructural de la mutación. Lo anterior refleja que los blancos terapéuticos están dirigidos a ciertos genes, como BRCA1/2, versus otros que no se posee tanta evidencia clínica acumulada.
+
+El análisis de gnomAD aporta una capa complementaria de interpretación basada en frecuencia poblacional. La mayoría de las variantes germinales seleccionadas se clasifican como “muy raras” (frecuencias globales del orden de 10⁻⁶–10⁻⁵), lo que, en el marco de las guías ACMG/AMP, respalda su potencial patogénico (criterio PM2: ausencia o frecuencia extremadamente baja en poblaciones de referencia).
+
+En contraste, variantes como FLT3 p.Thr227Met o CALR p.Gly375Cys muestran frecuencias ~0.6 en gnomAD, distribuidas de forma relativamente uniforme entre múltiples poblaciones, lo que es compatible con variantes comunes probablemente benignas, pese a su ubicación en genes relevantes para cáncer.
+
+El genoma del paciente presenta un trasfondo de susceptibilidad (variantes germinales raras con potencial efecto funcional), sobre el cual el tumor acumula eventos somáticos de alto impacto que consoliden la transformación neoplásica, en línea con la hipótesis de los “dos golpes” de Knudson para genes supresores de tumor.
+
+Como limitaciones principales, el análisis se basa en una sola muestra tumoral y un solo conjunto germinal, el llamado somático se hizo en modo tumor-only sin panel de normales, y se trabajó solo con variantes puntuales/indels anotadas por VEP, sin considerar alteraciones estructurales.
+
+## Conclusiones
+
+El tumor presenta aproximadamente el doble de variantes únicas que el genoma germinal, con un claro enriquecimiento en mutaciones de alto impacto (frameshift, stop_gained/stop_lost, splice), mientras que el germinal está dominado por variantes missense y anotaciones intrónicas o reguladoras.Este patrón es consistente con la acumulación de drivers somáticos sobre un trasfondo germinal mayoritariamente tolerado. Además fue posible identificar variantes recurrentes en genes clave de reparación de ADN (BRCA1/2, PTEN), regulación epigenética (KMT2A, EZH2) y señalización hematopoyética/proliferativa (FLT3, KIT, PDGFRB, JAK2/JAK3, CBL, ABL1, KRAS). La coincidencia de mutaciones germinales y somáticas en varios de estos genes sugiere mecanismos bialélicos de inactivación o desregulación, compatibles con el modelo de “dos golpes” para genes supresores de tumor. Las variantes truncantes en BRCA1/2 están respaldadas por evidencia de nivel 1 en OncoKB como alteraciones loss-of-function asociadas a sensibilidad a inhibidores de PARP, lo que marca la importancia de reconocer un posible estado de deficiencia en recombinación homóloga. Para otros genes truncados (KIT, PDGFRB, ABL1, JAK2), la evidencia clínica es mucho más limitada, lo que expone la necesidad de estudios funcionales y clínicos adicionales antes de proponer intervenciones específicas.La mayoría de las variantes germinales potencialmente relevantes son muy raras o ausentes en gnomAD, lo que, de acuerdo con las guías ACMG/AMP, refuerza su posible contribución patogénica.En contraste, variantes comunes en FLT3 y CALR probablemente representan polimorfismos sin impacto clínico mayor, pese a su localización en genes de interés oncológico.
