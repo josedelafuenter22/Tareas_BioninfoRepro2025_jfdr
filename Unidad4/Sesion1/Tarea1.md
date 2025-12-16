@@ -170,7 +170,7 @@ El resultado fue el siguiente:
     <b>Figura 5.</b> Boxplot de datos postnormalización.</figcaption>
 </figure>  
 
-Al comparar las figuras 4 y 5, se puede notar que la normaliación eliminó la diferencia entre los arreglos, reduciendo de esta forma el efecto del ruido técnico y teniendo datos disponibles para una comparación y análisis para la expresión diferencial. 
+Al comparar las figuras 4 y 5, se puede notar que la normalización eliminó la diferencia entre los arreglos, reduciendo de esta forma el efecto del ruido técnico y teniendo datos disponibles para una comparación y análisis para la expresión diferencial. 
 
 ## Pruebas de expresión diferencial (p-values).
 
