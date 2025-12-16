@@ -96,19 +96,19 @@ Realizado lo anterior, se corrió el script [Full.R](https://github.com/josedela
 Las figuras obtenidas de este bloque fueron las siguientes:
 
 <figure >
-  <img src="boxplot_raw_probe_qc.png" alt="Analyzed data file">
+  <img src="img/boxplot_raw_probe_qc.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 1.</b> Boxplot de valores sin filtrar según calidad de sonda.</figcaption>
 </figure>  
 
 <figure >
-  <img src="boxplot_raw_treatment.png" alt="Analyzed data file">
+  <img src="img/boxplot_raw_treatment.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 2.</b> Boxplot por tratamiento sin filtrar.</figcaption>
 </figure>  
 
 <figure >
-  <img src="Pairs_scatter_log2.png" alt="Analyzed data file">
+  <img src="img/Pairs_scatter_log2.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 3.</b> Scatter plot entre arreglos.</figcaption>
 </figure>  
@@ -159,13 +159,13 @@ boxplot(
 El resultado fue el siguiente:
 
 <figure >
-  <img src="prenorm.png" alt="Analyzed data file">
+  <img src="img/prenorm.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 4.</b> Boxplot de datos prenormalización.</figcaption>
 </figure>  
 
 <figure >
-  <img src="postnorm.png" alt="Analyzed data file">
+  <img src="img/postnorm.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 5.</b> Boxplot de datos postnormalización.</figcaption>
 </figure>  
@@ -178,7 +178,7 @@ La figura obtenida fue la siguiente:
 
 
 <figure >
-  <img src="P-values_Hist.png" alt="Analyzed data file">
+  <img src="img/P-values_Hist.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 6.</b> Histogramas de p-values.</figcaption>
 </figure>  
@@ -205,13 +205,13 @@ El resultado del análisis de expresión diferencial, considerando una FDR &le; 
 Los diagramas de Venn obtenidos fueron los siguientes:
 
 <figure >
-  <img src="vennDiagram_DiffExprs.png" alt="Analyzed data file">
+  <img src="img/vennDiagram_DiffExprs.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 7.</b> Diagrama de Venn para genes expresados diferencialmente.</figcaption>
 </figure>  
 
 <figure >
-  <img src="vennDiagram_Int.png" alt="Analyzed data file">
+  <img src="img/vennDiagram_Int.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 8.</b> Diagrama de Venn para genes expresados según tratamiento y genotipo.</figcaption>
 </figure>  
@@ -225,7 +225,7 @@ En cuanto a la figura 8, el panel de la izquierda muestra los genes que responde
 El analisis funcional con topGO, dió como resultado la siguiente tabla:
 
 <figure >
-  <img src="tablaGO.png" alt="Analyzed data file">
+  <img src="img/tablaGO.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 9.</b> Tabla de análisis funcional.</figcaption>
 </figure>  
