@@ -106,7 +106,7 @@ El gráfico obtenido es el que se muestra a continuación:
 
 
 <figure >
-  <img src="SSQ_by_K_using_kmeans_fil.png" alt="Analyzed data file">
+  <img src="img/SSQ_by_K_using_kmeans_fil.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 1.</b> Gráfico de WSS vs número de clústers para sondas.</figcaption>
 </figure>  
@@ -131,7 +131,7 @@ dev.off()
 Se generó un nuevo elemento (X), ya que kmeans asume que las filas son las observaciones, por lo que para analizar las muestras, es necesario transponer la matriz escalada. Como resultado de lo anterior, se obtuvo el siguiente gráfico:
 
 <figure >
-  <img src="SSQ_by_K_using_kmeans_col.png" alt="Analyzed data file">
+  <img src="img/SSQ_by_K_using_kmeans_col.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 2.</b> Gráfico de WSS vs número de clústers para muestras .</figcaption>
 </figure>  
@@ -159,14 +159,14 @@ dev.off()
 Con ello se obtuvieron los siguientes gráficos:
 
 <figure >
-  <img src="Clusplot_kmeans_k4.png" alt="Analyzed data file">
+  <img src="img/Clusplot_kmeans_k4.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 3.</b> Clusplot para k=4 para sondas .</figcaption>
 </figure>  
 
 
 <figure >
-  <img src="fviz_cluster_kmeans_k4.png" alt="Analyzed data file">
+  <img src="img/fviz_cluster_kmeans_k4.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 4.</b> Clusplot para k=4 con fviz para sondas .</figcaption>
 </figure>  
@@ -198,7 +198,7 @@ Cómo resultado, se obtuvo el siguiente dendograma:
 
 
 <figure >
-  <img src="rect_hclust_samples.png" alt="Analyzed data file">
+  <img src="img/rect_hclust_samples.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 5.</b> Dendograma jerárquico para muestras .</figcaption>
 </figure>  
@@ -224,7 +224,7 @@ dev.off()
 Cuyo dendograma resultante fue:
 
 <figure >
-  <img src="rect_hclust_genes.png" alt="Analyzed data file">
+  <img src="img/rect_hclust_genes.png" alt="Analyzed data file">
   <figcaption>
     <b>Figura 6.</b> Dendograma jerárquico para sondas.</figcaption>
 </figure>  
