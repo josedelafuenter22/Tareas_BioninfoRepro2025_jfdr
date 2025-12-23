@@ -23,3 +23,5 @@ Each directory correspond to the assigments for each session. The name of direct
 [Tarea 5 Unidad 3](https://github.com/josedelafuenter22/Tareas_BioninfoRepro2025_jfdr/blob/main/Unidad3/Tarea5/Tarea5.md)
 
 [Tarea 1 Unidad 4](https://github.com/josedelafuenter22/Tareas_BioninfoRepro2025_jfdr/blob/main/Unidad4/Sesion1/Tarea1.md)
+
+[Tarea 2 Unidad 4](https://github.com/josedelafuenter22/Tareas_BioninfoRepro2025_jfdr/blob/main/Unidad4/Sesion2/Tarea2.md)
