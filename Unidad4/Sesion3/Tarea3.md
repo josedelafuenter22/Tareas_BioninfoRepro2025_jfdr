@@ -1,12 +1,11 @@
----
-title: "Tarea_3_Unidad_4"
-output:
-  pdf_document: default
-  html_document: default
-date: "2025-12-30"
----
+
+# Análisis de Expresión Diferencial a partir de Secuencias de RNA
+
+## Por José de la Fuente.
 
 ## Introducción
+
+La formación de biopelículas constituye un estado fisiológico diferenciado que implica cambios coordinados en la expresión génica. En Sulfolobus acidocaldarius, la regulación transcripcional asociada a este proceso y el rol de reguladores específicos como Lrs14-like aún no se encuentran completamente caracterizados. En este trabajo se analizan datos de RNA-seq correspondientes a condiciones planctónicas y de biopelícula, comparando un genotipo Wildtype y un mutante Lrs14-like knockdown, con el objetivo de evaluar el impacto del medio de cultivo y del genotipo sobre la actividad transcripcional global y específica.
 
 ## Métodos
 
