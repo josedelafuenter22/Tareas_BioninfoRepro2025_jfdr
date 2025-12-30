@@ -309,7 +309,7 @@ plot(pseudocounts$Mutant_P, pseudocounts$Mutant_B,
 abline(lsfit(pseudocounts$Mutant_P, pseudocounts$Mutant_B))
 ```
 
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-80-1.png)
 
 
 ``` r
@@ -328,7 +328,7 @@ plot(pseudocounts$WildType_B, pseudocounts$Mutant_B,
 abline(lsfit(pseudocounts$WildType_B, pseudocounts$Mutant_B))
 ```
 
-![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png)
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-81-1.png)
 
 Histogramas de valores P:
 
@@ -341,7 +341,7 @@ hist(results_genotype$PValue, col = "skyblue", border = "blue",
      main = "Genotype", xlab = "P-value", ylab = "Frequency")
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png)
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-82-1.png)
 
 Graficos de valores P vs FDR
 
@@ -356,7 +356,7 @@ plot(results_genotype$PValue, results_genotype$FDR,
      xlab = "P-value", ylab = "FDR")
 ```
 
-![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.png)
+![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-83-1.png)
 
 Guardado de tablas de resultados:
 
